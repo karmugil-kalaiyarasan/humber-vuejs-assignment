@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>v-if If Statements</title>
+    <meta charset="UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+      .special {
+        background: yellow;
+        border: 1px dotted #fe0000;
+        padding: 30px;
+        display: block;
+        text-align: center;
+      }
+      .important {
+        font-weight: bold;
+        font-size: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div v-if="profile">
+        <img v-bind:src="profile.pic" alt="profile.alt" />
+        <p v-if="profile.fname || profile.lname">
+          <span v-if="profile.fname">{{profile.fname}}</span>
+          <span v-if="profile.lname">{{ profile.lname}}</span>
+        </p>
+        <p v-if="profile.desc">{{profile.desc}}</p>
+        <p v-if="profile.bio">{{profile.bio}}</p>
+        <p v-else>no bio available</p>
+      </div>
+      <span v-else> No Profile Data found. </span>
+    </div>
+
+    <script>
+      var app = new Vue({
+        el: "#app",
+
+        data: {
+          profile: {
+            fname: "Karmugil",
+            lname: "Kalaiyarasan Kavitha",
+            desc: "Blockchain Developer",
+            bio: "I am a Blockchain developer",
+            pic: "https://www.w3schools.com/howto/img_avatar.png",
+            alt: "profile picture",
+          },
+        },
+      });
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Intro to v-bind</title>
+    <meta charset="UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+      .container {
+        background: #cecece;
+      }
+      .highlight {
+        border: 10px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <span v-bind:class="loadClass"> look at me! </span>
+      <div>
+        <img v-bind:src="img.src" v-bind:alt="img.alt" />
+      </div>
+    </div>
+
+    <script>
+      var app = new Vue({
+        //Bind Vue object to HTML element through query selector
+        el: "#app",
+        data: {
+          loadClass: "container highlight",
+          title: "Exercise 2",
+          img: {
+            src: "https://media.istockphoto.com/photos/freedom-chains-that-transform-into-birds-charge-concept-picture-id1322104312",
+            alt: "chain changing into free birds",
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vue Components</title>
+    <meta charset="UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+      .circle {
+        border-radius: 50%;
+        background: Grey;
+        border: 1px solid #ccc;
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <orb v-bind:radius="40" v-bind:color="'white'"></orb>
+      <orb
+        v-for="orb in orbs"
+        v-bind:radius="orb.radius"
+        v-bind:color="orb.color"
+        v-bind:x="orb.x"
+        v-bind:y="orb.y"
+        v-bind:key="orb.id"
+      >
+      </orb>
+    </div>
+
+    <script>
+      Vue.component("orb", {
+        props: ["radius", "color", "x", "y"],
+        template: `<span 
+			v-bind:class="'circle'" 
+			v-bind:style="{'width':radius+'px', 'height':radius+'px', 'background':color, 'position':'absolute', 'top':y, 'left':x}"
+			v-on:click="prompt();">
+		</span>`,
+        methods: {
+          prompt: function () {
+            alert("You clicked the " + this.color + " circle!");
+            this.color = "none";
+          },
+        },
+      });
+
+      var app = new Vue({
+        el: "#app",
+
+        data: {
+          orbs: [
+            { id: 1, radius: 10, color: "green", x: "50px", y: "10px" },
+            { id: 2, radius: 15, color: "purple", x: "100px", y: "30px" },
+            { id: 3, radius: 20, color: "black", x: "150px", y: "50px" },
+            { id: 4, radius: 25, color: "blue", x: "200px", y: "70px" },
+            { id: 5, radius: 30, color: "orange", x: "300px", y: "90px" },
+            { id: 6, radius: 35, color: "yellow", x: "600px", y: "110px" },
+            { id: 7, radius: 45, color: "red", x: "800px", y: "1130px" },
+          ],
+        },
+      });
+    </script>
+  </body>
+</html>

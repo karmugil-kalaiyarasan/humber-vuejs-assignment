@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>v-on Event Handlers</title>
+    <meta charset="UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+      .box {
+        width: 200px;
+        height: 200px;
+        background: green;
+        border: 2px solid black;
+        text-align: center;
+        line-height: 200px;
+        color: white;
+      }
+      .hidden {
+        display: none;
+      }
+      .hoverBox {
+        width: 50px;
+        height: 50px;
+        background: blue;
+        border: 3px solid black;
+        text-align: center;
+        line-height: 50px;
+        color: white;
+      }
+      .grow {
+        height: 100px;
+        width: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div v-bind:class="{box:true, hidden:boxHidden}">{{message}}</div>
+      <button v-on:click="showhide();">{{boxHidden ? 'Show' : 'Hide'}}</button>
+      <div
+        v-bind:class="{hoverBox:true, grow:grow}"
+        v-on:mouseover="hover()"
+        v-on:mouseout="hover()"
+      >
+        {{newmessage}}
+      </div>
+    </div>
+
+    <script>
+      var app = new Vue({
+        el: "#app",
+
+        data: {
+          boxHidden: false,
+          message: "Make me disappear!",
+          grow: false,
+          newmessage: "Hover",
+        },
+        methods: {
+          showhide: function () {
+            console.log(this.boxHidden);
+            if (this.boxHidden) {
+              this.boxHidden = false;
+            } else {
+              this.boxHidden = true;
+            }
+          },
+          hover: function () {
+            this.grow = !this.grow;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
